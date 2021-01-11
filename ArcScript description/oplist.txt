@@ -1,0 +1,452 @@
+ARCSCRIPT OPERATOR LIST
+
+SYSTEM DICTIONARIES
+	systemdict
+		- systemdict <dict>
+	utilitydict
+		- utilitydict <dict>
+	userdict
+		- userdict <dict>
+
+OPSTACK OPS
+	dup
+		<any> dup <any> <any>
+	pop	
+		<any0> <any1> pop <any0>
+	exch	
+		<any0> <any1> exch <any1> <any0>
+	clear
+		<any0> <any1> ...etc. clear -
+	cleartomark	
+		<any0> <mark> <any1> ...etc. cleartomark <any0>
+	count
+		<any0> <any1> ...<anyn> count <any0> <any1> ...<any1> <numn>
+	currentdict
+		- currentdict <dict>
+	counttomark
+		<any...n> <mark> <any...o> counttomark <any...n> <mark> <any...o> <numo>
+	index
+		<any0> <any1> ...<anyn> <numx> index <any0> <any1> ...<anyn> <anyn-x>
+	copy
+		<any1...n> n copy <any1...n> <any1...n>
+		<collection1> <collection2> copy <collection2> 
+	roll
+		<anyn-1>...<any0> <numn> <numj> roll <anyj-1modn>...<any0> <anyn-1>...<anyjmodn>
+	mark	
+		- mark <mark>
+	[
+		- [ <mark>
+	]	
+		<mark> <any0> <any1> ...etc. ] <array>
+	<<	
+		- << <mark>
+	>>	
+		<mark> <key0> <val0> <key1> <val1>...etc.  >> <dict>
+
+DICT STACK OPERATORS
+	begin
+		<dict> begin -
+	end
+		- end -
+	def
+		/key <value> def -
+	undef (proc)
+		/key undef -
+	dictstack
+		- dictstack <array>
+	countdictstack
+		- countdictstack <num>
+
+EXEC STACK OPERATORS
+	exec	
+		<any> exec -
+	eval (proc)
+		<any> eval -
+	countexecstack
+		- countexecstack <num>
+	execstack
+		- execstack <array>
+
+OUTPUT OPERATORS
+	logmessage
+		<messagestring> logmessage -
+	logobject
+		<any> logobject -
+	logerror
+		<errorstring> logerror -
+
+ENUMERATION OPERATORS
+	enumerate
+		<collectiona> enumerate <collectiona>
+	first 
+		<collectiona> first <collectiona> <value> <true>
+		<collectiona> first <false>
+		<dicta> first <dicta> <key> <value> <true>
+		<dicta> first <false>
+	last 
+		<collectiona> last <collectiona> <value> <true>
+		<collectiona> last <false>
+		<dicta> last <dicta> <key> <value> <true>
+		<dicta> last <false>
+	next
+		<collectiona> next <collectiona> <value> <true>
+		<collectiona> next <false>
+		<dicta> next <dicta> <key> <value> <true>
+		<dicta> next <false>
+	previous
+		<collectiona> previous <collectiona> <value> <true>
+		<collectiona> previous <false>
+		<dicta> previous <dicta> <key> <value> <true>
+		<dicta> previous <false>
+
+DICT OPERATORS
+	length
+		<collection> length <num>
+	get
+		<collection> <key> get <val>
+	put
+		<collection> <key> <val> put -
+	known
+		<dict> <key> known <bool>
+		<array> <value> known <bool>
+	maxlength
+		<dict> maxlength <int> 
+	dict
+		<length> dict <dict>
+	load
+		<key> load <value
+	store
+		<key> <value> store -
+	where
+		<key> where <dict> <true>
+		<key> where <false>
+	replace
+		<collection> <oldval> <newval> replace <collection>
+	remove
+		<collection> <val> remove <collection>
+	defaultDictSize 
+		- defaultDictSize <num>
+	makedict (proc) 
+		- makedict <dict>
+
+ARRAY OPERATORS
+	array
+		<length> array <array>
+	apush
+		<arrayx> <any> apush <arrayx>
+	apop
+		<array> apop <array>
+	acurrent
+		<array> acurrent <any>
+	getinterval
+		<array> <index> <count> getinterval <newarray>
+		<string> <index> <count> getinterval <newstring>
+	putinterval
+		<arraya> <index> <arrayb> putinterval -
+		<stringa> <index> <stringb> putinterval -
+	insertinterval
+		<arraya> <index> <arrayb> insertinterval -
+		<stringa> <index> <stringb> insertinterval -
+	aload
+		<array> aload <val0>...<valn-1> <array> 
+	astore
+		<any0>...<anyn-1> <array> astore <array>
+		<mark> <any0>...<anyn-1> <array> astore <array>
+	defaultArraySize 
+		- defaultArraySize <num>
+	makearray (proc)
+		- makearray <array>
+		
+STRING OPERATORS		
+	string
+		<length> string <string>
+	search
+		<string> <searchstring> search <poststring> <matchstring> <prestring> <true>
+		<string> <searchstring> search <string> <false>
+	anchorsearch
+		<string> <searchstring> search <poststring> <matchstring> <true>
+		<string> <searchstring> search <string> <false>
+	append
+		<stringa> <stringb> append <stringa+b>
+	defaultStringSize 
+		- defaultStringSize <num>
+	makestring (proc)
+		- makestring <string>
+	writeTokenToString (proc)
+		<string> <any> writeTokenToString -
+
+FILE OPERATORS
+	flushfile
+		<file> flushfile -
+	file
+		<filenamestring> file <file>
+	read
+		<file> read <num>
+	write
+		<file> <num> write -
+	clearfile 
+		<file> clearfile -
+	readline
+		<file> readline <string>
+	writeline
+		<file> <string> writeline -
+	readtoken
+		<file> readtoken <any>
+		<string> readtoken <any>
+	writeTokenToFile (proc)
+		<file> <any> writeTokenToFile -
+
+BOOLEAN OPERATORS
+	true 
+		- true <true>
+	false 
+		- false <false>
+	and
+		<boola> <boolb> and <boolc>
+	or
+		<boola> <boolb> or <boolc>
+	xor
+		<boola> <boolb> xor <boolc>
+	not
+		<bool> not <bool>
+		
+MATH OPERATORS
+	pi 
+		- pi <num3.14159265>
+	add
+		<numa> <numb> add <anuma+b>
+	sub
+		<numa> <numb> sub <anuma-b>
+	mul
+		<numa> <numb> mul <anuma*b>
+	div
+		<numa> <numb> div <anuma/b>
+	mod 
+		<numa> <numb> mod <anumamodb>
+	abs
+		<num> abs <numb>
+	neg
+		<num> neg <numb>
+	ceiling 
+		<num> ceiling <numb>
+	floor 
+		<num> floor <numb>
+	round 
+		<num> round <numb>
+	truncate 
+		<num> truncate <numb>
+	sqrt 
+		<num> sqrt <numb>
+	ln
+		<num> ln <numb>
+	log 
+		<num> log <numb>
+	exp 
+		<numa> <numb> exp <anumaexpb>
+	rand (proc)
+		- rand <num>
+			setRandomSeed 
+		<num> setRandomSeed -
+	randomSeed (proc)
+		- randomSeed <num> 
+TRIG OPERATORS		
+	degtorad
+		<num> degtorad <numb>
+	radtodeg 
+		<num> radtodeg <numb>
+	constrainangle	
+		<num> constrainangle <numb>
+(USE RADIANS)	
+	sin 	
+		<numa> sin <numb>
+	cos
+		<numa> cos <numb>
+	tan 
+		<numa> tan <numb>
+	asin
+		<numa> asin <numb>
+	acos
+		<numa> acos <numb>
+	atan
+		<numa> atan <numb>
+(USE DEGREES)	
+	sine 
+		<numa> sine <numb>
+	cosine
+		<numa> cosine <numb>
+	tangent
+		<numa> tangent <numb>
+	asine
+		<numa> asine <numb>
+	acosine
+		<numa> acosine <numb>
+	atangent
+		<numa> atangent <numb>
+
+COMPARISON OPERATORS		
+	eq
+		<anya> <anyb> eq <bool>
+	neq
+		<anya> <anyb> neq <bool>
+	ge
+		<anya> <anyb> ge <bool>
+	gt
+		<anya> <anyb> gt <bool>
+	le
+		<anya> <anyb> le <bool>
+	lt
+		<anya> <anyb> lt <bool>
+
+CONTROL OPERATORS
+	if
+		<bool> <proc> if -
+	ifelse
+		<bool> <proca> <procb> ifelse -
+	exit
+		- exit -
+	loop
+		<proc> loop -
+	repeat
+		<num> <proc> repeat - 
+	for
+		<startnum> <incrementnum> <limitnum> <proc> for -
+	forall
+		<collection> <proc> forall -
+
+TYPE & CONVERSION OPERATORS		
+	cvx	
+		<any> cvx <any>
+	xcheck
+		<any> xcheck <bool>
+	cvn
+		<string> cvn <literalname>
+	type
+		<any> type <typename>
+	cvlit
+		<execname> cvlit <literalname> 
+	stringval
+		<any> stringval <string>
+
+TYPE NAMES
+	/array
+	/bool
+	/dict
+	/file
+	/number
+	/mark
+	/name
+	/operator
+	/string
+	/message
+	/error
+	/tSLineIncrement
+	
+COMMENT CONVENTIONS
+		; ignore to end of line
+		// ignore to end of line
+		% ignore to end of line
+	
+OBJECT SYSTEM (utilitydict
+	classes 
+		- classes <dict>
+	getclass
+		/validclassname getclass <<class>> <true>
+		<invalidany> getclass <false>
+	defclass
+		<<classdefinitiondict>> defclass -
+	setclassvar
+		/key <value> /classname setclassvar -
+	getclassvar
+		/key /classname getclassvar <value>
+	resolveComplexMethod
+		{oldproc} [complexmethodarray] resolveComplexMethod {newproc}
+	[complexmethodarray] (used to inherit methods)
+		[{proc} (/runBefore and/or /runAfter)]	
+	fireClassMethod
+		/methodname /classname fireClassMethod -
+	!
+		/classname ! <<instance>>
+	--
+		/methodname classname -- -
+		...data... /methodname /classname -- -
+	/object definition (root class)				
+		<<
+			/classname /object //necessary
+			/parentname nil //necessary... 
+			/vars //optional
+			<<
+				/self nil
+			>>
+			/classvars //optional
+			<<
+				/instanceCount 0
+				/arraytest [1 2 3] 
+			>>
+			/methods //optional
+			<<
+				/init 
+				{
+					/self currentdict def
+					self
+				} 
+				/class ; /class <self> -- <<class>>
+				{
+					classname getclass pop //bool is meaningless, since creation of instance means there is a valid class
+				}
+				/setvar ; /key value /set <self> -- -
+				{ //check for known and flag error
+					def
+				}
+				/setdata ; <dict> /setdata <self> -- - 
+				{ //check for known and flag error
+					{def} forall
+				}
+				/getvar ; /key /get <self> -- <value>
+				{
+					cvx exec	
+				}
+				/execute ; <proc> /exec <self> -- -
+				{
+					exec	
+				}
+				/is-a? ; /classname /is-a? <self> -- <bool>
+				{
+					classname eq
+					{
+						true
+					}
+					{
+						false	
+					} ifelse	
+				}
+				/equal? ; <instance> /equal? <self> -- <bool>
+				{
+					self eq
+				}
+				/clone ; /clone <self> -- <selfclone> 
+				{
+					makedict copy	
+				}						
+				/duplicate ; <dict> /copy <self> -- <dict> 
+				{
+					self exch copy	
+				}						
+			>>
+			/classmethods //optional
+			<<
+				/incrementInstanceCount
+				{
+					environment begin
+					/instanceCount instanceCount 1 add def
+					end
+				}
+			>>
+		>> defclass
+	inherited class - minimal defintion
+		<<
+			/classname /derivedclass
+			/parentname /object
+		>> defclass
+				
+						
+	
